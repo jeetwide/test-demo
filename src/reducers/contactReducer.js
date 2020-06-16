@@ -15,7 +15,7 @@ const initialState = {
       email: "jack@gmail.com",
       link: "www.abc.com",
       gender:"Male",
-      hobbies:"playing games",
+      hobbies:["playing games"],
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ const initialState = {
       email: "ramesh.p@gmail.com",
       link: "www.abc.com",
       gender:"Male",
-      hobbies:"playing games",
+      hobbies:["playing games"],
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const initialState = {
       email: "Sincere@april.biz",
       link: "www.abc.com",
       gender:"Female",
-      hobbies:"playing games",
+      hobbies:["playing games"],
     },
   ],
   selectedItems: [],

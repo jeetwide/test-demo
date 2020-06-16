@@ -28,7 +28,7 @@ const Item = ({ contact, selectAll }) => {
       <td>{gender}</td>
       <td>{hobbies}</td>
       <td className="actions">
-        <Link to={`/contacts/edit/${id}`}>
+        <Link to={`/items/edit/${id}`}>
           <span className="material-icons mr-2 ">edit</span>
         </Link>
 

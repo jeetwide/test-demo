@@ -2,12 +2,12 @@ import React from "react";
 
 import "./styles/App.scss";
 import Navbar from "./components/elements/Navbar";
-import Items from "./components/Contacts/Items";
+import Items from "./components/Items/Items";
 import { Provider } from "react-redux";
 import store from "./store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import AddItem from "./components/Contacts/AddItem";
-import EditItem from "./components/Contacts/EditItem";
+import AddItem from "./components/Items/AddItem";
+import EditItem from "./components/Items/EditItem";
 
 function App() {
   return (
@@ -19,8 +19,8 @@ function App() {
             <div className="py-3">
               <Switch>
                 <Route exact path="/" component={Items} />
-                <Route path="/contacts/add" component={AddItem} />
-                <Route path="/contacts/edit/:id" component={EditItem} />
+                <Route path="/items/add" component={AddItem} />
+                <Route path="/items/edit/:id" component={EditItem} />
               </Switch>
             </div>
           </div>

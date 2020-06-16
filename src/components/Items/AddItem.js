@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../actions/itemAction";
 import shortid from "shortid";
@@ -11,29 +11,29 @@ const AddItem = () => {
   const [email, setEmail] = useState("");
   const [link, setLink] = useState("");
   const [gender, setGender] = useState("Male");
-  const [hobbies, setHobbies] = useState("");
-  const [state, setState] = React.useState({
-    gender: false,
-    love: false,
-  });
+  const [hobbies, setHobbies] = useState([]);
 
-  const initialCheckboxes = [{ name: "test", checked: false,
-   },{name: "love", checked: false}];
+  const initialCheckboxes = [
+    { name: "Watching TV", checked: false },
+    { name: "Playing Games", checked: false },
+  ];
   const [checkboxItems, setCheckboxItems] = useState(initialCheckboxes);
 
-  // const handleToggle = ({ target }) =>
-  // setState(s => ({ ...s, [target.name]: !s[target.name] }));
-
-
   const checkedItems = checkboxItems.filter(({ checked }) => checked);
-  //console.log("checkedItems ",checkedItems)
-  
+  console.log("checkedItems ", checkedItems);
+  let myJSON = JSON.stringify(checkedItems);
 
+  var names = JSON.parse(myJSON);
+  let result = names.map(a => a.name);
+ 
+  console.log("checkedItems in String  ",result); //outputs  ["Watching TV", "Playing Games"]
 
-  const handleToggle = (event) => {
-    console.log(event.target.value);
-    setHobbies((s) => ({ ...s, [event.target.name]: event.target.checked }));
-  };
+  setHobbies(result);
+
+  // useEffect(() => {
+  //   // Should not ever set state during rendering, so do this in useEffect instead.
+  //   setHobbies(...hobbies,result);
+  // }, [hobbies]);
 
   const createContact = (e) => {
     e.preventDefault();
@@ -109,73 +109,25 @@ const AddItem = () => {
             </label>
           </div>
           <label className="font-weight-bold">Hobbies</label>
-          <div className="form-group">
-            <div class="form-check-inline">
-              <label class="form-check-label">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  name="Playing_Games"
-                  onChange={(e) => handleToggle(e)}
-                />
-                Playing Games
-              </label>
-            </div>
-            <div class="form-check-inline">
-              <label class="form-check-label">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  value="Watching_TV"
-                  onChange={(e) => handleToggle(e)}
-                />
-                Watching TV
-              </label>
-            </div>
-            <div class="form-check-inline">
-              <label class="form-check-label">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  value="Reading_Books"
-                  value="Reading_Books"
-                  onChange={(e) => handleToggle(e)}
-                />
-                Reading Books
-              </label>
-            </div>
-          </div>
-          {/* <div>
-        {Object.keys(state).map(key => (
-          <input
-            type="checkbox"
-            onChange={handleToggle}
-            key={key}
-            name={key}
-            checked={state[key]}
-          />
-        ))}
-      </div> */}
-          <div className="form-group">
+
+          <div>
             {checkboxItems.map((checkbox, index) => (
-              <div>
-                <p>{checkbox.name}</p>
+              <div className="form-check-inline">
+                <p class="form-check-label mr-2">{checkbox.name}</p>
                 <input
                   type={"checkbox"}
-                  onChange={(checked) => {
+                  onChange={(e) => {
                     const newCheckboxes = [...checkboxItems];
-                    newCheckboxes[index].checked= checked.target.value;
+                    newCheckboxes[index].checked = e.target.checked;
                     setCheckboxItems(newCheckboxes);
-                    console.log("checked target" +checked.target.value);
                   }}
                   checked={checkbox.checked}
                 />
-             
               </div>
             ))}
           </div>
 
-          <button className="btn btn-primary" type="submit">
+          <button className="btn btn-primary mt-2" type="submit">
             Add Item
           </button>
         </form>
