@@ -28,7 +28,7 @@ const AddItem = () => {
  
   console.log("checkedItems in String  ",result); //outputs  ["Watching TV", "Playing Games"]
 
-  setHobbies(result);
+ // setHobbies(result); here I am facing an issue
 
   // useEffect(() => {
   //   // Should not ever set state during rendering, so do this in useEffect instead.
